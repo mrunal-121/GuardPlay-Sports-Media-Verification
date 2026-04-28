@@ -99,10 +99,13 @@ async function startServer() {
   });
 
   // Simulator: Add a new alert every 60 seconds
+  let alertCounter = 2; // Start after initial mock alert
   setInterval(() => {
     const platforms = ["StreamX.tv", "SportsFlix.net", "BettingHub.live", "PiratePlay.cc"];
+    const id = `ALRT-${Date.now().toString().slice(-4)}${Math.floor(Math.random() * 100).toString().padStart(2, '0')}`;
+    
     const newAlert = {
-      id: `ALRT-${String(alerts.length + 1).padStart(3, '0')}`,
+      id: id,
       assetId: assets[Math.floor(Math.random() * assets.length)].id,
       platform: platforms[Math.floor(Math.random() * platforms.length)],
       url: `https://mock-unauthorized-site.com/media/${Math.random().toString(36).substring(7)}`,
